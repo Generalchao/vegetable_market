@@ -85,7 +85,7 @@ a{color: var(--main-color)}
 .van-search__action{position: absolute;background-color: var(--main-color);border-radius: 20px;color: #fff;padding:6px 16px;right: 15px;line-height: 20px;}
 .van-search .van-cell{padding:7px 8px 7px 0;}
 .van-search--show-action{padding-right: 12px;}
-.van-field__value{padding-right: 70px;}
+.van-search .van-field__value{padding-right: 70px;}
 
 
 /* 商家信息 */
