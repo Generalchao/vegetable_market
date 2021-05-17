@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>菊园菜场智慧平台</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+	<!-- 引入样式文件 -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.8/lib/index.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+
+	<!-- 引入 Vue 和 Vant 的 JS 文件 -->
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vant@2.8/lib/vant.min.js"></script>
+	<style type="text/css">
+		.introduce{text-align: center;font-size: 16px;padding:20px 0 ;display: block;margin: 20px;}
+	</style>
+</head>
+<body>
+	<header class="top_bar">
+		<h1 class="top_title">菊园菜场智慧平台</h1>
+	</header>
+
+
+	<div class="content_box" id="app">
+		<van-cell-group>
+			<van-cell title="首页" is-link url="home.html" /></van-cell>
+			<van-cell title="摊位管理" is-link url="booth_management.html" /></van-cell>
+			<van-cell title="摊位详情" is-link url="booth_detail.html" /></van-cell>
+			<van-cell title="商品信息" is-link url="goods_info.html" /></van-cell>
+			<van-cell title="用户中心" is-link url="mine.html" /></van-cell>	
+			<van-cell title="实时监控" is-link url="monitoring.html" /></van-cell>	
+
+			<van-cell title="监控页面" is-link url="monitoring_detail.html" /></van-cell>
+			<van-cell title="修改密码" is-link url="password.html" /></van-cell>
+		</van-cell-group>
+
+		<a class="introduce" href="https://youzan.github.io/vant/?source=vuejsorg#/zh-CN/home">当前使用的是Vant组件库，点击了解</a>
+
+
+	</div>   
+
+	<script type="text/javascript">
+
+		var app = new Vue({
+			el: '#app',
+			template:'',
+			
+		})
+
+	</script>	
+</body>
+</html>

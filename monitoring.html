@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>实时监控</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+	<!-- 引入样式文件 -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.8/lib/index.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+
+	<!-- 引入 Vue 和 Vant 的 JS 文件 -->
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vant@2.8/lib/vant.min.js"></script>
+	<style type="text/css">
+
+	</style>
+</head>
+<body class="monitoring">
+	<header class="home_top_bar" id="app">
+		<h1 class="top_title">商品信息</h1>
+		<a class="left_btn" href="home.html"><i class="icon-arrow-left"></i></a>
+
+		<van-search v-model="search_value" show-action placeholder="搜索" shape="round" @search="onSearch">
+			<template #action>
+		    <div @click="onSearch">搜索</div>
+		  </template>
+		</van-search>
+
+		<div class="decorate"></div>
+	</header>
+
+<div class="content_box" id="videolist">
+	<div class="video item"  v-for="item in videolist" >
+		<img class="video_img" :src="item.video_img">
+		<p class="video_title">{{item.video_title}}</p>
+	</div>
+	<van-empty description="描述文字" />
+</div>
+
+
+
+	<script type="text/javascript">
+
+		var app = new Vue({
+			el: '#videolist',
+			data: {
+				videolist:[{
+					video_img:'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F6%2F590c109371166.jpg&refer=http%3A%2F%2Fpic1.win4000.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1623854033&t=d61aae50268fdf87c487293b851c0fbf',
+					video_title:'视频标题02'
+				},{
+					video_img:'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F6%2F590c109371166.jpg&refer=http%3A%2F%2Fpic1.win4000.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1623854033&t=d61aae50268fdf87c487293b851c0fbf',
+					video_title:'视频标题03'
+				},{
+					video_img:'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F6%2F590c109371166.jpg&refer=http%3A%2F%2Fpic1.win4000.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1623854033&t=d61aae50268fdf87c487293b851c0fbf',
+					video_title:'视频标题01'
+				},{
+					video_img:'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F6%2F590c109371166.jpg&refer=http%3A%2F%2Fpic1.win4000.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1623854033&t=d61aae50268fdf87c487293b851c0fbf',
+					video_title:'视频标题05'
+				},{
+					video_img:'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F6%2F590c109371166.jpg&refer=http%3A%2F%2Fpic1.win4000.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1623854033&t=d61aae50268fdf87c487293b851c0fbf',
+					video_title:'视频标题04'
+				},{
+					video_img:'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F6%2F590c109371166.jpg&refer=http%3A%2F%2Fpic1.win4000.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1623854033&t=d61aae50268fdf87c487293b851c0fbf',
+					video_title:'视频标题06'
+				}
+
+				]
+
+			},
+
+
+
+
+
+
+
+		})
+
+
+
+		var app = new Vue({
+			el:'#app',
+			data(){
+				return{
+			      search_value:'',	
+				}
+
+			},
+			methods: {
+
+		    onSearch(val) {
+		      Toast(val);
+		    },
+
+		  }
+
+
+		})
+
+	</script>	
+
+</body>
+</html>

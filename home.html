@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>上海市嘉定区商务委员会
-粮食和物资监管综合管理平台</title>
+	<title>首页</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
 	<!-- 引入样式文件 -->
@@ -13,51 +12,102 @@
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/vant@2.8/lib/vant.min.js"></script>
 </head>
-<body class="home">
+<body class="home" >
 
-	<h1 class="title"><font>上海市嘉定区商务委员会
-</font><br>粮食和物资监管综合管理平台</h1>
+	<div id="app">
 
-	<div class="menu">
+		<img class="logo_title" src="img/title@2x.svg">
 
-		<div class="item">
-			<a href="video_daolu.html">
-				<i class="icon-jiankong"></i>
-				<span>监控页面</span>
-			</a>
+
+		<div class="menu_wrap">
+
+				<van-field
+				  readonly
+				  clickable
+				  :value="value"
+				  placeholder="选择菜场"
+				  @click="showPicker = true"
+				  class="marketPick"
+				></van-field>
+
+				<van-popup v-model="showPicker" round position="bottom">
+				  <van-picker
+				    show-toolbar
+				    :columns="columns"
+				    @cancel="showPicker = false"
+				    @confirm="onConfirm"
+				  />
+				</van-popup>
+
+
+				<div class="menu">
+
+					<div class="item">
+						<a href="booth_management.html">
+							<i class="icon-tanwei"></i>
+							<span>摊位管理</span>
+						</a>
+					</div>
+					<div class="item">
+						<a href="goods_info.html">
+							<i class="icon-xinxi"></i>
+							<span>商品信息</span>
+						</a>
+					</div>
+					<div class="item">
+						<a href="monitoring.html">
+							<i class="icon-jiankong"></i>
+							<span>实时监控</span>
+						</a>
+					</div>
+					<div class="item">
+						<a href="mine.html">
+							<i class="icon-yonghu"></i>
+							<span>用户中心</span>
+						</a>
+					</div>
+
+				</div>
+
+			
 		</div>
-		<div class="item">
-			<a href="liangchang.html">
-				<i class="icon-liangchang"></i>
-				<span>粮仓页面</span>
-			</a>
-		</div>
-		<div class="item">
-			<a href="changka.html">
-				<i class="icon-changka"></i>
-				<span>粮食仓卡</span>
-			</a>
-		</div>
-		<div class="item">
-			<a href="wares.html">
-				<i class="icon-wuzhi"></i>
-				<span>物资库页面</span>
-			</a>
-		</div>
-		<div class="item">
-			<a href="shougou.html">
-				<i class="icon-shougou"></i>
-				<span>收购页面</span>
-			</a>
-		</div>
-		<div class="item">
-			<a href="mine.html">
-				<i class="icon-yonghu"></i>
-				<span>用户中心</span>
-			</a>
-		</div>
+
+		
+
 
 	</div>
+
+	<script type="text/javascript" src="js/picker.city.js" ></script>	
+	<script type="text/javascript">
+
+
+		new Vue({
+			el:'#app',		
+			data() {
+		    return {
+		      value: '菊园菜场',
+		      showPicker: false,
+		      columns: ['菊园菜场', '菊胜菜场', '光明菜场', '嘉定菜场', '嘉园菜场', '某某菜场', '某某菜场', '某某菜场'],
+		    };
+		  },
+
+		  methods: {
+		    onConfirm(value) {
+		      this.value = value;
+		      this.showPicker = false;
+		    },
+		  },		  
+
+
+
+
+		});
+
+
+
+
+		
+	</script>	
 
 </body>
 </html>

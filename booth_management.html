@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>摊位管理</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+	<!-- 引入样式文件 -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.8/lib/index.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+
+	<!-- 引入 Vue 和 Vant 的 JS 文件 -->
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vant@2.8/lib/vant.min.js"></script>
+</head>
+<body>
+	<header class="home_top_bar" id="app">
+		<h1 class="top_title">摊位管理</h1>
+		<a class="left_btn" href="home.html"><i class="icon-arrow-left"></i></a>
+
+		<van-search v-model="search_value" show-action placeholder="请输入搜索关键词" shape="round" @search="onSearch">
+			<template #action>
+		    <div @click="onSearch">搜索</div>
+		  </template>
+		</van-search>
+
+		<div class="filter_box">
+
+			<div class="cell">
+				<van-field
+					readonly
+					clickable
+					:value="number"
+					placeholder="摊位号"
+					@click="showPicker = true"
+				></van-field>
+				<van-popup v-model="showPicker" position="bottom">
+				<van-picker
+					show-toolbar
+					:columns="columns"
+					@cancel="showPicker = false"
+					@confirm="onConfirm"
+				/>
+				</van-popup>
+                <i class="icon-arrow-bottom"></i>
+            </div>
+
+			<div class="cell">
+				<van-field
+					readonly
+					clickable
+					:value="status"
+					placeholder="摊位状态"
+					@click="showPicker2 = true"
+				></van-field>
+				<van-popup v-model="showPicker2" position="bottom">
+				<van-picker
+					show-toolbar
+					:columns="columns2"
+					@cancel="showPicker2 = false"
+					@confirm="onConfirm2"
+				/>
+				</van-popup>
+                <i class="icon-arrow-bottom"></i>
+            </div>
+
+
+
+
+			<div class="cell">
+				<van-field
+					readonly
+					clickable
+					:value="date"
+					placeholder="入驻时间"
+					@click="show = true"
+				></van-field>
+                <i class="icon-arrow-bottom"></i>
+            </div>           
+
+			<van-calendar color="#3DA8FF" v-model="show" @confirm="onConfirm3" />
+
+
+        </div>
+	</header>
+
+
+	<div class="content_box" id="boothinfolist">
+
+
+		<div class="boothinfo item" v-for="item in boothinfolist" >
+			<p class="hd">{{item.boothinfo_number}}</p>
+			<span :class="{'status_online':item.boothinfo_status === '营业中', 'status_offline':item.boothinfo_status === '未出售' }">{{item.boothinfo_status}}</span>
+			<div class="info">
+				<div class="cells">
+					<span class="title">负责人员</span>
+					<span class="value" >{{item.boothinfo_owner}}</span>	
+				</div>
+				<div class="cells">
+					<span class="title">入驻时间</span>
+					<span class="value">{{item.boothinfo_date}}</span>	
+				</div>
+				<div class="cells" style="width: 100%">
+					<span class="title">备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注</span>
+					<span class="value">{{item.boothinfo_remark}}</span>	
+				</div>
+			</div>
+
+		</div> 		 		
+
+
+	</div>   
+
+	<script type="text/javascript" src="js/picker.city.js" ></script>	
+	<script type="text/javascript">
+
+
+
+
+
+		new Vue({
+			el:'#app',
+		  data() {
+		    return {
+		      number: '',
+		      search_value:'',
+		      date: '',
+		      status:'',
+		      minDate: new Date(2018, 0, 1),
+		      currentDate: new Date(),
+		      showPicker: false,
+		      showPicker2: false,
+		      show: false,
+		      columns: ['01001', '01002', '01003', '01004'],
+		      columns2: ['营业中', '未出售'],
+		    }
+		  },
+		  methods: {
+		    onConfirm(number) {
+		      this.number = number;
+		      this.showPicker = false;
+		    },
+
+		    onConfirm2(status) {
+		      this.status = status;
+		      this.showPicker2 = false;
+		    },
+
+
+			formatDate(date) {
+			      return `${date.getMonth() + 1}/${date.getDate()}`;
+		    },
+
+		    onConfirm3(date) {
+			      this.show = false;
+			      this.date = this.formatDate(date);
+		    },
+		    onSearch(val) {
+		      Toast(val);
+		    },
+
+
+
+		  }
+
+
+		});
+
+
+
+		new Vue({
+			el:'#boothinfolist',
+			data: {
+				boothinfolist:[{
+					boothinfo_number:'01001',
+					boothinfo_owner:'李小明',
+					boothinfo_date:'2020年6月15日',
+					boothinfo_remark:'无',
+					boothinfo_status:'营业中',
+				},{
+					boothinfo_number:'01002',
+					boothinfo_owner:'张小凡',
+					boothinfo_date:'2020年6月15日',
+					boothinfo_remark:'无',
+					boothinfo_status:'营业中',
+				},{
+					boothinfo_number:'01003',
+					boothinfo_owner:'李晓明',
+					boothinfo_date:'2020年6月15日',
+					boothinfo_remark:'无',
+					boothinfo_status:'营业中',
+				},{
+					boothinfo_number:'01004',
+					boothinfo_owner:'李晓明',
+					boothinfo_date:'2020年6月15日',
+					boothinfo_remark:'无',
+					boothinfo_status:'营业中',
+				},{
+					boothinfo_number:'01005',
+					boothinfo_remark:'这里展示具体备注内容',
+					boothinfo_status:'未出售',
+				},{
+					boothinfo_number:'01006',
+					boothinfo_owner:'李晓明',
+					boothinfo_date:'2020年6月15日',
+					boothinfo_remark:'无',
+					boothinfo_status:'营业中',
+				},
+
+
+				]
+			},
+
+
+		})
+
+
+	</script>	
+</body>
+</html>

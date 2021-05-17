@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>摊位详情</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+	<!-- 引入样式文件 -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.8/lib/index.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+
+	<!-- 引入 Vue 和 Vant 的 JS 文件 -->
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vant@2.8/lib/vant.min.js"></script>
+</head>
+<body class="booth_detail">
+	<header class="home_top_bar" id="app">
+		<h1 class="top_title">摊位详情</h1>
+		<a class="left_btn" href="booth_management.html"><i class="icon-arrow-left"></i></a>
+
+		<div class="business_info">
+			<p class="hd">01001</p>
+			<span class="status_online">营业中</span>
+			<div class="info">
+				<div class="cells">
+					<span class="title">负责人员:</span> 
+					<span class="value">李小明</span>
+				</div> 
+				<div class="cells">
+					<span class="title">今日进货:</span> 
+					<span class="value">3批</span>
+				</div> 
+				<div class="cells">
+					<span class="title">联系电话:</span> 
+					<span class="value">13261236317</span>
+				</div> 
+			</div>
+			
+		</div>
+
+
+		<div class="filter_box">
+
+			<div class="cell">
+				<van-field
+					readonly
+					clickable
+					:value="lr_date"
+					placeholder="录入时间"
+					@click="show = true"
+				></van-field>	
+				<van-calendar color="#3DA8FF" v-model="show" @confirm="onConfirm" ></van-calendar>
+                <i class="icon-arrow-bottom"></i>
+            </div>
+
+			<div class="cell">
+				<van-field
+					readonly
+					clickable
+					:value="status"
+					placeholder="溯源状态"
+					@click="showPicker2 = true"
+				></van-field>
+				<van-popup v-model="showPicker2" position="bottom">
+				<van-picker
+					show-toolbar
+					:columns="columns"
+					@cancel="showPicker2 = false"
+					@confirm="onConfirm2"
+				/>
+				</van-popup>
+                <i class="icon-arrow-bottom"></i>
+            </div>
+
+			<div class="cell">
+				<van-field
+					readonly
+					clickable
+					:value="rz_date"
+					placeholder="入驻时间"
+					@click="show = true"
+				></van-field>	
+				<van-calendar color="#3DA8FF" v-model="show" @confirm="onConfirm" ></van-calendar>
+                <i class="icon-arrow-bottom"></i>
+            </div>         
+
+
+
+        </div>
+	</header>
+
+
+	<div class="content_box" id="goodsinfolist">
+
+
+		<div class="goodsinfo item" v-for="item in goodsinfolist" >
+			<p class="hd">{{item.goodsinfo_name}}</p>
+			<span class="status">{{item.goodsinfo_status}}</span>
+			<div class="info">
+				<div class="cells" style="width: 100%;">
+					<span class="title">供货单位:</span>
+					<span class="value" >{{item.goodsinfo_brand}}</span>	
+				</div>
+				<div class="cells" style="width: 100%;">
+					<span class="title">重&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量:</span>
+					<span class="value">{{item.goodsinfo_weight}}</span>	
+				</div>
+			</div>
+
+		</div> 		 		
+
+
+	</div>   
+
+	<script type="text/javascript" src="js/picker.city.js" ></script>	
+	<script type="text/javascript">
+
+
+
+
+
+		new Vue({
+			el:'#app',
+		  data() {
+		    return {
+		      lr_date: '',
+		      rz_date: '',
+		      status:'',
+		      minDate: new Date(2018, 0, 1),
+		      currentDate: new Date(),
+		      showPicker2: false,
+		      show: false,
+		      columns: ['已溯源', '未溯源', '不涉及'],
+		    }
+		  },
+		  methods: {
+
+		    onConfirm2(status) {
+		      this.status = status;
+		      this.showPicker2 = false;
+		    },
+
+
+			formatDate(date) {
+			      return `${date.getMonth() + 1}/${date.getDate()}`;
+		    },
+
+		    onConfirm(date) {
+			      this.show = false;
+			      this.lr_date = this.formatDate(date);
+		    },
+
+
+
+
+		  }
+
+
+		});
+
+
+
+		new Vue({
+			el:'#goodsinfolist',
+			data: {
+				goodsinfolist:[{
+					goodsinfo_name:'大白菜',
+					goodsinfo_brand:'上海菜篮子有限公司',
+					goodsinfo_weight:'1000千克',
+					goodsinfo_status:'已溯源',
+				},{
+					goodsinfo_name:'猪肉',
+					goodsinfo_brand:'上海雨润有限公司',
+					goodsinfo_weight:'1000千克',
+					goodsinfo_status:'已溯源',
+				},{
+					goodsinfo_name:'牛肉',
+					goodsinfo_brand:'上海菲力有限公司',
+					goodsinfo_weight:'1000千克',
+					goodsinfo_status:'未溯源',
+				},{
+					goodsinfo_name:'羊肉',
+					goodsinfo_brand:'上海菲力有限公司',
+					goodsinfo_weight:'1000千克',
+					goodsinfo_status:'不涉及',
+				},{
+					goodsinfo_name:'韭菜',
+					goodsinfo_brand:'上海菜篮子有限公司',
+					goodsinfo_weight:'1000千克',
+					goodsinfo_status:'已溯源',
+				},{
+					goodsinfo_name:'黄瓜',
+					goodsinfo_brand:'上海菜篮子有限公司',
+					goodsinfo_weight:'1000千克',
+					goodsinfo_status:'已溯源',
+				},
+
+
+				]
+			},
+
+
+		})
+
+
+	</script>	
+</body>
+</html>
