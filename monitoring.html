@@ -26,15 +26,14 @@
 		  </template>
 		</van-search>
 
-		<div class="decorate"></div>
+		<div class="decorate"></div><!-- 装饰元素 -->
 	</header>
 
-<div class="content_box" id="videolist">
+<div class="content_box" id="videolist" >
 	<div class="video item"  v-for="item in videolist" >
 		<img class="video_img" :src="item.video_img">
 		<p class="video_title">{{item.video_title}}</p>
 	</div>
-	<van-empty description="描述文字" />
 </div>
 
 
